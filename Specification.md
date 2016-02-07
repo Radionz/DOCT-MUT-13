@@ -48,17 +48,22 @@ Il sera possible quand nous aurons atteint un stade suffisamment avancé de notr
 
 
 Comparativement aux phases Maven mvn:<br>
- -> resources:resources<br>
+-> resources:resources
+
 Copie les ressources du projet.<br>
- -> compiler:compile<br>
-Compile les fichier sources en .class<br>
+-> compiler:compile
+Compile les fichier sources en .class
+
 C’est après que cette étape ce soit bien déroulée que les mutants sont crées.<br>
- -> resources:testResources<br>
+-> resources:testResources
+
 Copie les ressources relatives aux tests.<br>
- -> compiler:testCompile<br>
+->compiler:testCompile
+
 Les tests sont compilés.<br>
- -> surefire:test<br>
-Les tests sont exécutés sur le programme, c’est ici que nous exécutons les tests sur les mutants, les rapports xml sont générés. Et le rapport final html à la fin est lui aussi généré.<br>
+->surefire:test
+
+Les tests sont exécutés sur le programme, c’est ici que nous exécutons les tests sur les mutants, les rapports xml sont générés. Et le rapport final html à la fin est lui aussi généré.
 
 
 Liste de sélécteurs
