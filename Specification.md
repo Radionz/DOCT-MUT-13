@@ -32,6 +32,15 @@ Liste des mutations
 | Variable | Modifier un nom de variable par un autre du même type qui soit conforme aux règles de programmation Java. |
 | Variable-constante | Modifier un nom de variable par une constante du bon type .      |
 | Constante-constante | Modifier une constante par une autre constante du bon type .      |
+| Comparaison | Modifier les opérateurs de comparaison      |
+| Major-Minor | Inverser une incrémentation par une décrémentation et vice versa      |
+| Logique | Changer les opérateurs logiques      |
+| Return | Faire sortir le code d'une méthode avant qu'elle ne se termine      |
+| Constructeur | Modifier le contenu d'un constructeur     |
+| Instanciation | Supprimer l'instanciation d'un objet     |
+| Paramètre | Interchanger les paramètres de même type     |
+| Boucle | Changer la condition finale d'une boucle ou effectuer moins de tous pour un for     |
+| Déréférencer | Casser l'encapsulation et passer d'attributs à variables locales     |
 
 La liste comprend les opérateurs de base pour effectuer des mutations sur un programme. Par la suite nous ajouterons d’autres types de mutations à notre pool.
 Chaque mutation entraînera un changement dans le source du code. Le code une fois compilé, nous pourrons dérouler notre batterie de test pour vérifier la conformité du programme.	
