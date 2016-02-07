@@ -18,16 +18,11 @@ De plus une couverture de code par les tests à 100% ne signifie pas du code 100
 
 Les tests peuvent être utilisés pour mettre en évidence la présence de bugs dans un programme mais jamais leur absence.
 
+La théorie est que si une modification est introduite dans le code source sans que le comportement du programme soit affecté, alors cela indique soit que le code modifié n’est jamais exécuté, soit que les tests sont incapables de détecter la modification.
+
 L’idée  est de modifier le code source de notre application (créer des bugs, des mutants) et de vérifier que nos tests détectent les modifications (nos tests doivent échouer, tuer les mutants). Si nos tests passent toujours, c’est qu’ils ne sont pas pertinents.
 
 #### Environnement de test par mutation
-Une application de qualité passe obligatoirement par une bonne couverture de tests unitaires, mais savons nous quantifier leur pertinence, leur qualité ?
-De plus une couverture de code par les tests à 100% ne signifie pas du code 100% testé.
-
-Les tests peuvent être utilisés pour mettre en évidence la présence de bugs dans un programme mais jamais leur absence.
-
-La théorie est que si une modification est introduite dans le code source sans que le comportement du programme soit affecté, alors cela indique soit que le code modifié n’est jamais exécuté, soit que les tests sont incapables de détecter la modification.
-L’idée  est donc de modifier le code source de notre application (créer des bugs, des mutants) et de vérifier que nos tests détectent les modifications (nos tests doivent échouer, tuer les mutants). Si nos tests passent toujours, c’est qu’ils ne sont pas pertinents.
 
 Plus formellement, modifier le programme P en P’ en injectant une modification syntaxique correcte (P’ compile toujours) et idéalement, le comportement de P’ doit être différent de celui de P.
 
