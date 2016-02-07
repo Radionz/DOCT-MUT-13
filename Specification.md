@@ -35,3 +35,17 @@ A la fin du processus les données des différents tests sont agrégées et donn
 | Variable | Modifier un nom de variable par un autre du même type qui soit conforme aux règles de programmation Java. |
 | Variable-constante | Modifier un nom de variable par une constante du bon type .      |
 | Constante-constante | Modifier une constante par une autre constante du bon type .      |
+
+La liste comprend les opérateurs de base pour effectuer des mutations sur un programme. Par la suite nous ajouterons d’autres types de mutations à notre pool.
+Chaque mutation entraînera un changement dans le source du code. Le code une fois compilé, nous pourrons dérouler notre batterie de test pour vérifier la conformité du programme.	
+Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des types de mutation.
+
+======
+
+##### Manuel d'utilisation
+
+Proposer un mécanisme utilisable depuis la ligne de commande qui permette:
+D'appliquer des mutations sur du code
+De collecter les résultats des tests appliqués aux mutants
+De produire une synthèse (une page html) explicitant les résultats de votre analyse par mutation: quels mutants ont résistés, quels mutants ont été tués, ..
+
