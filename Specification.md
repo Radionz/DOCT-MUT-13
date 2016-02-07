@@ -3,9 +3,8 @@
 Dorian BLANC
 Manuel PAVONE
 
-======
-
-##### La chaîne de production
+La chaîne de production
+------
 
 Nous récupérons les sources du projet P à tester, ces sources sont compilées (javac) et testées (JUnit) via les tests du projet afin de récupérer un rapport de test initial.
 Ensuite l’étape de génération des mutants commence, notre solution en utilisant Spoon pour la modification des sources utilise ses mutations appliquée avec ses sélecteurs.
@@ -20,10 +19,8 @@ A la fin du processus les données des différents tests sont agrégées et donn
 
 <p align="center"> <img src="http://i.imgur.com/88OCcaZ.png"></img></p>
 
-
-======
-
-##### Liste des mutations 
+Liste des mutations
+------
 
 | **Nom**       | **Modification**           |
 | ------------- |-------------|
@@ -40,9 +37,9 @@ La liste comprend les opérateurs de base pour effectuer des mutations sur un pr
 Chaque mutation entraînera un changement dans le source du code. Le code une fois compilé, nous pourrons dérouler notre batterie de test pour vérifier la conformité du programme.	
 Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des types de mutation.
 
-======
 
-##### Manuel d'utilisation
+Manuel d'utilisation
+------
 
 Proposer un mécanisme utilisable depuis la ligne de commande qui permette:
 D'appliquer des mutations sur du code
