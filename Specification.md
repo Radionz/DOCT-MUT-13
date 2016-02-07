@@ -47,7 +47,7 @@ Chaque mutation entraînera un changement dans le source du code. Le code une fo
 Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des types de mutation.
 
 
-Pool de sélécteurs
+Liste de sélécteurs
 ------
 
 Programme entier
