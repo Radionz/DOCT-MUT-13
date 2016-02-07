@@ -6,7 +6,7 @@
 
 #### L'équipe
 
-| *Prénom *       | *Nom *          |
+| Prénom        | Nom           |
 | ------------- |:-------------:|
 | Manuel     | Pavone |
 | Dorian      | Blanc      |
