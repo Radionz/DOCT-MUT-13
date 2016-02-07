@@ -9,7 +9,7 @@ La chaîne de production
 Nous récupérons les sources du projet P à tester, ces sources sont compilées (javac) et testées (JUnit) via les tests du projet afin de récupérer un rapport de test initial.
 Ensuite l’étape de génération des mutants commence, notre solution en utilisant Spoon pour la modification des sources utilise ses mutations appliquée avec ses sélecteurs.
 
-<p align="center"> <img src="http://i.imgur.com/QEq3d1S.png"></img></p>
+<p align="center"> <img src="http://i.imgur.com/0jSwn6U.png"></img></p>
 
 Chaque mutant est testé (JUnit) et fourni un rapport de test au format xml.
 
@@ -47,11 +47,24 @@ Chaque mutation entraînera un changement dans le source du code. Le code une fo
 Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des types de mutation.
 
 
+Pool de sélécteurs
+------
+
+Programme entier
+Package
+Classe
+Méthode
+Dans un intervalle de lignes
+
+
 Manuel d'utilisation
 ------
 
-Proposer un mécanisme utilisable depuis la ligne de commande qui permette:
-D'appliquer des mutations sur du code
-De collecter les résultats des tests appliqués aux mutants
-De produire une synthèse (une page html) explicitant les résultats de votre analyse par mutation: quels mutants ont résistés, quels mutants ont été tués, ..
+Depuis la ligne de commande nous pouvons choisir quelles mutations appliquer avec quel sélecteurs.
+Nous pouvons aussi spécifier le répertoire de sauvegardes des rapports xml et du rapport html.
 
+$: mut [[Option] [Name]]...
+
+-s, --selector .............  Choix du selecteur
+-t, --type .................  Choix de la mutation
+ => [Complément]
