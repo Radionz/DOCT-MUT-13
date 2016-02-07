@@ -43,8 +43,8 @@ Liste des mutations
 | Déréférencer | Casser l'encapsulation et passer d'attributs à variables locales     |
 
 La liste comprend les opérateurs de base pour effectuer des mutations sur un programme. Par la suite nous ajouterons d’autres types de mutations à notre pool.
-Chaque mutation entraînera un changement dans le source du code. Le code une fois compilé, nous pourrons dérouler notre batterie de test pour vérifier la conformité du programme.	
-Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des types de mutation.
+Chaque mutation entraînera un changement dans le source du code. Le code une fois compilé, nous pourrons dérouler notre batterie de tests pour vérifier la conformité du programme.	
+Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des nouveaux types de mutations.
 
 
 Liste de sélécteurs
