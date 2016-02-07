@@ -47,6 +47,20 @@ Chaque mutation entraînera un changement dans le source du code. Le code une fo
 Il sera possible quand nous aurons atteint un stade suffisamment avancé de notre projet, ajouter des mutations de façon dynamique. L’idée étant de coupler une classe java et un fichier de configuration pour rajouter “à la volée” des nouveaux types de mutations.
 
 
+Comparativement aux phases Maven mvn:<br>
+ -> resources:resources<br>
+Copie les ressources du projet.<br>
+ -> compiler:compile<br>
+Compile les fichier sources en .class<br>
+C’est après que cette étape ce soit bien déroulée que les mutants sont crées.<br>
+ -> resources:testResources<br>
+Copie les ressources relatives aux tests.<br>
+ -> compiler:testCompile<br>
+Les tests sont compilés.<br>
+ -> surefire:test<br>
+Les tests sont exécutés sur le programme, c’est ici que nous exécutons les tests sur les mutants, les rapports xml sont générés. Et le rapport final html à la fin est lui aussi généré.<br>
+
+
 Liste de sélécteurs
 ------
 
