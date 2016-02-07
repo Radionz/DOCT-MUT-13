@@ -65,6 +65,6 @@ Nous pouvons aussi spécifier le répertoire de sauvegardes des rapports xml et 
 
 $: mut [[Option] [Name]]...
 
--s, --selector .............  Choix du selecteur
--t, --type .................  Choix de la mutation
+-s, --selector .............  Choix du selecteur <br>
+-t, --type ....................  Choix de la mutation <br>
  => [Complément]
