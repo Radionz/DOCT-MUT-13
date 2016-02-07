@@ -66,7 +66,7 @@ Les tests sont compilés.<br>
 Les tests sont exécutés sur le programme, c’est ici que nous exécutons les tests sur les mutants, les rapports xml sont générés. Et le rapport final html à la fin est lui aussi généré.
 
 
-Liste de sélécteurs
+Liste des sélécteurs
 ------
 
 Programme entier
