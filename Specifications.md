@@ -69,11 +69,11 @@ Les tests sont exécutés sur le programme, c’est ici que nous exécutons les 
 Liste des sélécteurs
 ------
 
-Programme entier
-Package
-Classe
-Méthode
-Dans un intervalle de lignes
+Programme entier<br>
+Package<br>
+Classe<br>
+Méthode<br>
+Dans un intervalle de lignes<br>
 
 
 Manuel d'utilisation
