@@ -11,7 +11,13 @@ import org.apache.maven.plugin.MojoFailureException;
  * @phase mutate-sources
  */
 public class CodeGeneratorMojo extends AbstractMojo {
+    /**
+     * @parameter default-value="plus"
+     * @optional
+     */
+    private String mutation;
+
     public void execute() throws MojoExecutionException, MojoFailureException {
-        getLog().info("Hello World!");
+        getLog().info("Hello World! \nMutation : " + mutation);
     }
 }
