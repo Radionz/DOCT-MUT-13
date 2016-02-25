@@ -50,7 +50,7 @@
                 </executions>
                 <configuration>
                     <processors>
-                        <processor>fr.unice.polytech.doct13.processors.ClassProcessor</processor>
+                        <processor>fr.polytech.doctmut.13.processors.ClassProcessor</processor>
                     </processors>
                 </configuration>
                 <!-- To be sure that you use the latest version of Spoon, specify it as dependency. -->
