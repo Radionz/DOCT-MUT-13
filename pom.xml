@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>devops.13</groupId>
-    <artifactId>mutation-project-maven-plugin</artifactId>
+    <groupId>fr.polytech.doctmut.13</groupId>
+    <artifactId>mutation</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
@@ -26,13 +26,18 @@
             <artifactId>spoon-core</artifactId>
             <version>5.0.2</version>
         </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.10</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
-                <groupId>devops.13</groupId>
-                <artifactId>mutation-project-maven-plugin</artifactId>
+                <groupId>fr.polytech.doctmut.13</groupId>
+                <artifactId>mutation</artifactId>
                 <version>1.0-SNAPSHOT</version>
 
                 <executions>
