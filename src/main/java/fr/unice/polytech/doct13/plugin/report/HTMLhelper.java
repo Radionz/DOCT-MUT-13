@@ -17,7 +17,6 @@ public class HTMLhelper {
         html += "<title>Mutation Report</title>\n";
         html += "<style>\n";
         html += "#tableMutants{border:1px solid;margin:0 auto;}" +
-                "#tableMutants td{border:1px solid;}" +
                 ".aliveMut{background-color:red;}" +
                 ".deadMut{background-color:green;}\n";
         html += "</style>\n";

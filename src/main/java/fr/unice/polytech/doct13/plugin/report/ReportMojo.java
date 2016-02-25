@@ -73,7 +73,7 @@ public class ReportMojo extends AbstractMojo {
                     Element elem = (Element) nl.item(i);
                     if (className.isEmpty()) {
                         className = elem.getAttribute("classname");
-                        html += "<div style='border: 1px solid;background-color: #EEE'>Class : " + className + "</div>\n";
+                        html += "<div style='background-color: #EEE'>Class : " + className + "</div>\n";
                         html += "<table id='tableMutants'><tr><td>Alive (Method)</td><td>Dead (Method)</td></tr>\n";
                     }
                     if (elem.getChildNodes().getLength() == 0) {
