@@ -36,33 +36,6 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>fr.inria.gforge.spoon</groupId>
-                <artifactId>spoon-maven-plugin</artifactId>
-                <version>2.2</version>
-
-                <executions>
-                    <execution>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <processors>
-                        <processor>fr.polytech.doctmut.13.processors.ClassProcessor</processor>
-                    </processors>
-                </configuration>
-                <!-- To be sure that you use the latest version of Spoon, specify it as dependency. -->
-                <dependencies>
-                    <dependency>
-                        <groupId>fr.inria.gforge.spoon</groupId>
-                        <artifactId>spoon-core</artifactId>
-                        <version>5.0.2</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-plugin-plugin</artifactId>
                 <version>3.2</version>
