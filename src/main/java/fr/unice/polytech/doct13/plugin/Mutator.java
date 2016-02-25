@@ -4,9 +4,13 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
 import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 
 import java.io.File;
+
+
+
 
 /**
  * Created by Serpe on 25/02/2016.
@@ -15,12 +19,15 @@ import java.io.File;
 @Mojo( name = "yayo")
 public class Mutator extends AbstractMojo {
 
-    private MavenProject project;
+
 
     /**
      * permet la récupération d'informations sur le project qui utilise notre plugin
      * la variable project est remplie automatiquement
      */
+    @Parameter(defaultValue = "${project}", required = true, readonly = false)
+    private MavenProject project;
+
     public void execute() throws MojoExecutionException, MojoFailureException {
 
         System.out.println("#####################  Mutator  #####################################\n");
