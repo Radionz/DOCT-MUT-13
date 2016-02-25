@@ -1,4 +1,4 @@
-package fr.unice.polytech.doct13.spoon;
+package fr.unice.polytech.doct13.processors;
 
 import org.apache.log4j.Level;
 import spoon.processing.AbstractProcessor;
