@@ -1,4 +1,5 @@
-package fr.unice.polytech.doct13.plugin;
+package fr.unice.polytech.doct13.plugin.report;
+import fr.unice.polytech.doct13.plugin.report.HTMLhelper;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -61,50 +62,38 @@ public class ReportMojo extends AbstractMojo{
             }
             PrintWriter writer = new PrintWriter(htmlReport.getAbsolutePath(), "UTF-8");
 
-            writer.println("<!DOCTYPE html>");
-            writer.println("<html>");
-            writer.println("<head>");
-            writer.println("<title>Mutation Report</title>");
-            writer.println("<style>");
-            writer.println("#tableMutants{border:1px solid;margin:0 auto;}" +
-                    "#tableMutants td{border:1px solid;}" +
-                    ".aliveMut{background-color:red;}" +
-                    ".deadMut{background-color:green;}");
-            writer.println("</style>");
-            writer.println("</head>");
-            writer.println("<body>");
+
             int mutantVivant = 0;
             int mutantMort = 0;
+            String html = "";
             for (NodeList nl : nlList){
                 String className = "";
                 for (int i = 0; i < nl.getLength(); i++) {
                     Element elem = (Element) nl.item(i);
                     if (className.isEmpty()) {
                         className = elem.getAttribute("classname");
-                        writer.println("<div style='border: 1px solid;background-color: #EEE'>Dans la classe : " + className + "</div>");
-                        writer.println("<table id='tableMutants'><tr><td>Mutant Vivant</td><td>Mutant Tué</td></tr>");
+                        html += "<div style='border: 1px solid;background-color: #EEE'>Dans la classe : " + className + "</div>\n";
+                        html += "<table id='tableMutants'><tr><td>Mutant Vivant</td><td>Mutant Tue</td></tr>\n";
                     }
                     if (elem.getChildNodes().getLength() == 0) {
-                        writer.println("<tr><td class='aliveMut'>Dans la methode " + elem.getAttribute("name") + "</td><td></td></tr>");
+                        html += "<tr><td class='aliveMut'>Dans la methode " + elem.getAttribute("name") + "</td><td></td></tr>\n";
                         mutantVivant++;
                     } else {
-                        writer.println("<tr><td></td><td class='deadMut'>Dans la methode " + elem.getAttribute("name") + "</td></tr>");
+                        html += "<tr><td></td><td class='deadMut'>Dans la methode " + elem.getAttribute("name") + "</td></tr>\n";
                         mutantMort++;
                     }
                 }
-                writer.println("</table>");
-                writer.println("<div style='text-align: center;'>Nombre de Mutants vivant : "+mutantVivant+"</div>");
-                writer.println("<div style='text-align: center;'>Nombre de Mutants mort : "+mutantMort+"</div>");
+                html += "</table>\n";
+                html += "<div style='text-align: center;'>Nombre de Mutants vivant : "+mutantVivant+"</div>\n";
+                html += "<div style='text-align: center;'>Nombre de Mutants mort : "+mutantMort+"</div>\n";
                 float porcentageDeadMut = ((float)mutantMort/((float)mutantMort+(float)mutantVivant))*100;
                 float porcentageAliveMut = (((float)mutantVivant/((float)mutantMort+(float)mutantVivant))*100);
-                writer.println("<div style='text-align: center;'>% de Mutants mort : "+porcentageDeadMut+"% </div>");
-                writer.println("<div style='text-align: center;'>% de Mutants vivant : "+porcentageAliveMut+"% </div>");
+                html += "<div style='text-align: center;'>% de Mutants mort : "+porcentageDeadMut+"% </div>\n";
+                html += "<div style='text-align: center;'>% de Mutants vivant : "+porcentageAliveMut+"% </div>\n";
             }
-            writer.println("</body>");
-            writer.println("</html>");
+            writer.print(HTMLhelper.inHTMLbody(html));
+
             writer.close();
-
-
         }
         catch (IOException e) {e.printStackTrace();}
         catch (ParserConfigurationException e) {e.printStackTrace();}
