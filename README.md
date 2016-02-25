@@ -9,9 +9,10 @@
 #### L'équipe
 
 | Prénom        | Nom           |
-| ------------- |:-------------:|
-| Manuel     | Pavone |
-| Dorian      | Blanc      |
+|:-------------:|:-------------:|
+| Julien  | Andre |
+| Dorian  | Blanc |
+| Manuel  | Pavone  |
 
 #### Présentation du sujet
 
