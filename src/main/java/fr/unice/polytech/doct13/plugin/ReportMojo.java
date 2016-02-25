@@ -34,7 +34,6 @@ public class ReportMojo extends AbstractMojo{
     public void execute() throws MojoExecutionException,MojoFailureException{
         getLog().info("HTML Report");
         System.out.println(project.getBasedir()+"/target/surefire-reports");
-        //File fXmlFile = new File(project.getBasedir()+"/target/surefire-reports/TEST-TriangleTest.xml");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = null;
 
