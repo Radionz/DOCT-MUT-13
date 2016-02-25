@@ -64,6 +64,12 @@
                             <goal>descriptor</goal>
                         </goals>
                     </execution>
+                    <execution>
+                        <id></id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
                 </executions>
             </plugin>
         </plugins>
