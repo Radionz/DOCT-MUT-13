@@ -19,7 +19,9 @@ import java.io.File;
 @Mojo( name = "yayo")
 public class Mutator extends AbstractMojo {
 
+    public Mutator(){
 
+    }
 
     /**
      * permet la récupération d'informations sur le project qui utilise notre plugin
