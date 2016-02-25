@@ -5,9 +5,6 @@ import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.code.CtBinaryOperator;
 import spoon.reflect.declaration.CtElement;
 
-/**
- * Created by ca309567 on 22/02/16.
- */
 public class BinaryOperatorProcessor extends AbstractProcessor<CtElement> {
     @Override
     public boolean isToBeProcessed(CtElement candidate) {

@@ -5,9 +5,6 @@ import spoon.reflect.code.CtUnaryOperator;
 import spoon.reflect.code.UnaryOperatorKind;
 
 
-/**
- * Created by user on 20/02/2016.
- */
 public class UnaryProcessor extends AbstractProcessor<CtUnaryOperator> {
 
 

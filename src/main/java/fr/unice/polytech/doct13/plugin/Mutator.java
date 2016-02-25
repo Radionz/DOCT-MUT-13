@@ -12,9 +12,6 @@ import java.io.File;
 
 
 
-/**
- * Created by Serpe on 25/02/2016.
- */
 
 @Mojo( name = "yayo")
 public class Mutator extends AbstractMojo {
@@ -24,7 +21,7 @@ public class Mutator extends AbstractMojo {
     }
 
     /**
-     * permet la récupération d'informations sur le project qui utilise notre plugin
+     * permet la rï¿½cupï¿½ration d'informations sur le project qui utilise notre plugin
      * la variable project est remplie automatiquement
      */
     @Parameter(defaultValue = "${project}", required = true, readonly = false)
