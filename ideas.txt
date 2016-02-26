@@ -1,0 +1,15 @@
+# Ideas
+## Processeurs
+Ajouter un moyen de sélectionner un bout de code et appliquer une mutation sur une zone ciblée de la classe
+(20% du code, l'intérieur des méthodes, etc)
+
+---
+
+## Rapport HTML
+Faire un comparateur de le fichier à la git (surlignage des différences) pour une mutation (qui pose erreur ou non, à voir)
+
+---
+
+Afficher la liste des fichiers avec pourcentage de réussite à la JUnit
+
+---
