@@ -1,9 +1,7 @@
 package fr.unice.polytech.doct13.processors.binary;
 
-import spoon.processing.AbstractProcessor;
+import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
-import spoon.reflect.code.CtBinaryOperator;
-import spoon.reflect.declaration.CtElement;
 
 /**
  * Processor for mutating equals than into not equals modification

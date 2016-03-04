@@ -1,8 +1,7 @@
 package fr.unice.polytech.doct13.processors.unary;
 
+import fr.unice.polytech.doct13.processors.UnaryProcessor;
 import spoon.reflect.code.UnaryOperatorKind;
-
-import java.util.function.UnaryOperator;
 
 /**
  * Processor for post-incrementation into pre-decrement modification

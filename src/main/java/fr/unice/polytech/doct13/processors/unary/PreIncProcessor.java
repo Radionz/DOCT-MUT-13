@@ -1,5 +1,6 @@
 package fr.unice.polytech.doct13.processors.unary;
 
+import fr.unice.polytech.doct13.processors.UnaryProcessor;
 import spoon.reflect.code.UnaryOperatorKind;
 
 /**

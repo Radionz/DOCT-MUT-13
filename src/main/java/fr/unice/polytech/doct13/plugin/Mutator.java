@@ -1,17 +1,15 @@
 package fr.unice.polytech.doct13.plugin;
 
-import fr.unice.polytech.doct13.processors.binary.BinaryProcessor;
+import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import fr.unice.polytech.doct13.processors.binary.EqualsProcessor;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
-import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
-import org.junit.runner.notification.RunListener;
 import spoon.Launcher;
 import spoon.reflect.code.CtBinaryOperator;
 import spoon.reflect.code.CtExpression;
@@ -29,8 +27,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -40,13 +36,19 @@ import java.util.List;
 
 
 
-
-@Mojo( name = "yayo")
+/**
+ * A goal to mutate code.
+ *
+ * @goal mutator
+ * @phase mutation
+ */
 public class Mutator extends AbstractMojo {
 
-    public Mutator(){
+    // class path with name
+    private final static String FILE_PATH = System.getProperty("user.dir").replace("\\",File.separator) +
+            File.separator +
+            Mutator.class.getCanonicalName().replace(".",File.separator) + ".java";
 
-    }
 
     /**
      * permet la r�cup�ration d'informations sur le project qui utilise notre plugin
@@ -57,6 +59,10 @@ public class Mutator extends AbstractMojo {
 
     public void execute() throws MojoExecutionException, MojoFailureException {
 
+        getLog().info("\n###########CLASSPATH###########\n Mutator.java classpath : \n" +
+                project.getBasedir().toString() +
+                "\n###########CLASSPATH###########\n");
+
         System.out.println("#####################  Mutator  #####################################\n");
 
         String destination = project.getBasedir().toString()+"/target/mutations";
@@ -65,12 +71,10 @@ public class Mutator extends AbstractMojo {
 
         System.out.println("\n#######################################################################\n");
 
-
-
         /**Spoon**/
         Launcher l = new Launcher();
-        //l.addInputResource(project.getBasedir().toString()+"/src/main/java/fr/unice/polytech/plugin/Mutator.java");
-        l.addInputResource("C:/Users/Serpe/Documents/Polytech/DevOps/DOCT-MUT-13/src/main/java/fr/unice/polytech/doct13/plugin/Mutator.java");
+        l.addInputResource(project.getBasedir().toString()+"/src/main/java/fr/unice/polytech/plugin/Mutator.java");
+        //l.addInputResource("C:/Users/Serpe/Documents/Polytech/DevOps/DOCT-MUT-13/src/main/java/fr/unice/polytech/doct13/plugin/Mutator.java");
         System.out.println();
         l.buildModel();
         CtClass origClass = (CtClass) l.getFactory().Package().getRootPackage()
@@ -101,9 +105,8 @@ public class Mutator extends AbstractMojo {
             // setting the package
             klass.setParent(origClass.getParent());
 
-
-            //String pathMutant = project.getBasedir().toString()+"/src/main/java/fr/unice/polytech/plugin/Mutator.java";
-            String pathMutant ="C:/Users/Serpe/Documents/Polytech/DevOps/DOCT-MUT-13/src/main/java/fr/unice/polytech/doct13/plugin/Mutator.java";
+            String pathMutant = project.getBasedir().toString()+"/src/main/java/fr/unice/polytech/plugin/Mutator.java";
+            //String pathMutant ="C:/Users/Serpe/Documents/Polytech/DevOps/DOCT-MUT-13/src/main/java/fr/unice/polytech/doct13/plugin/Mutator.java";
             new File(pathMutant);
             try {
                 PrintWriter writer = new PrintWriter(pathMutant,"UTF-8");

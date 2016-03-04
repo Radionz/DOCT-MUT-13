@@ -1,4 +1,4 @@
-package fr.unice.polytech.doct13.processors.binary;
+package fr.unice.polytech.doct13.processors;
 
 import spoon.processing.AbstractProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
