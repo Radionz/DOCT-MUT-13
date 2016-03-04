@@ -38,16 +38,6 @@
                     </execution>
                 </executions>
             </plugin>
-
-            <plugin>
-                <groupId>fr.polytech.doctmut.13</groupId>
-                <artifactId>mutation</artifactId>
-                <version>1.0-SNAPSHOT</version>
-
-                <configuration>
-                    <project>${project}</project>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 

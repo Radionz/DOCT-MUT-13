@@ -5,6 +5,7 @@ import fr.unice.polytech.doct13.processors.binary.EqualsProcessor;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
+import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.project.MavenProject;
 import org.junit.runner.JUnitCore;
@@ -36,12 +37,7 @@ import java.util.List;
 
 
 
-/**
- * A goal to mutate code.
- *
- * @goal mutator
- * @phase mutation
- */
+@Mojo(name = "yayo")
 public class Mutator extends AbstractMojo {
 
     // class path with name
@@ -54,7 +50,7 @@ public class Mutator extends AbstractMojo {
      * permet la r�cup�ration d'informations sur le project qui utilise notre plugin
      * la variable project est remplie automatiquement
      */
-    @Parameter(defaultValue = "${project}", required = true, readonly = false)
+    @Parameter(defaultValue = "${project}", required = true, readonly = true)
     private MavenProject project;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
@@ -71,7 +67,7 @@ public class Mutator extends AbstractMojo {
 
         System.out.println("\n#######################################################################\n");
 
-        /**Spoon**/
+        // Spoon
         Launcher l = new Launcher();
         l.addInputResource(project.getBasedir().toString()+"/src/main/java/fr/unice/polytech/plugin/Mutator.java");
         //l.addInputResource("C:/Users/Serpe/Documents/Polytech/DevOps/DOCT-MUT-13/src/main/java/fr/unice/polytech/doct13/plugin/Mutator.java");
@@ -117,7 +113,7 @@ public class Mutator extends AbstractMojo {
             catch (FileNotFoundException e1) {e1.printStackTrace();}
             catch (UnsupportedEncodingException e1) {e1.printStackTrace();}
 
-            /**Compilation phase**/
+            // Compilation phase
             JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
             List<String> optionList = new ArrayList<String>();
 
@@ -129,9 +125,9 @@ public class Mutator extends AbstractMojo {
 
             JavaCompiler.CompilationTask task = compiler.getTask(null,fm,null,optionList,null,compUnits);
             task.call();
-            /**End Of Compilation phase**/
+            // End Of Compilation phase
 
-            /**TESTS PHASE**/
+            // TESTS PHASE
 
             File file = new File(project.getBasedir().toString()+"/target/test-classes");
             System.out.println(project.getBasedir().toString()+"/target/test-classes");
@@ -153,13 +149,12 @@ public class Mutator extends AbstractMojo {
                     System.out.println(failure.toString());
                 }
 
-
                 System.out.println("###########################");
                 System.out.println("######END OF MES TESTS#####");
                 System.out.println("###########################");
             } catch (MalformedURLException e1) {e1.printStackTrace();}
             catch (ClassNotFoundException e1) {e1.printStackTrace();}
-            /**End Of TESTS PHASE**/
+            // End Of TESTS PHASE
         }
 
         //  buildHelper(); //Change le sourceCodeDirectory.
