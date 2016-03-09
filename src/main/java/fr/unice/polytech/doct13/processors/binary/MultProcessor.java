@@ -4,11 +4,11 @@ import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
 
 /**
- * Processor for multiplication into modulo modification
+ * MyProcessor for multiplication into modulo modification
  */
 public class MultProcessor extends BinaryProcessor {
 
     public MultProcessor(){
-        super(BinaryOperatorKind.MUL,BinaryOperatorKind.MOD);
+        super(BinaryOperatorKind.MUL,BinaryOperatorKind.MOD, "MultProcessor");
     }
 }

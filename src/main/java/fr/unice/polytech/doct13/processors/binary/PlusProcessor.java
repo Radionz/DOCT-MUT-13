@@ -4,11 +4,11 @@ import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
 
 /**
- * Processor for mutating plus into minus modification
+ * MyProcessor for mutating plus into minus modification
  */
 public class PlusProcessor extends BinaryProcessor {
 
     public PlusProcessor(){
-        super(BinaryOperatorKind.PLUS,BinaryOperatorKind.MINUS);
+        super(BinaryOperatorKind.PLUS,BinaryOperatorKind.MINUS, "PlusProcessor");
     }
 }

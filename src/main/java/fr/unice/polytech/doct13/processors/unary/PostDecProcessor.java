@@ -4,7 +4,7 @@ import fr.unice.polytech.doct13.processors.UnaryProcessor;
 import spoon.reflect.code.UnaryOperatorKind;
 
 /**
- * Processor for post-decrement into post-incrementation modification
+ * MyProcessor for post-decrement into post-incrementation modification
  */
 public class PostDecProcessor extends UnaryProcessor {
 

@@ -4,7 +4,7 @@ import fr.unice.polytech.doct13.processors.UnaryProcessor;
 import spoon.reflect.code.UnaryOperatorKind;
 
 /**
- * Processor for positive into negative modification
+ * MyProcessor for positive into negative modification
  */
 public class PosProcessor extends UnaryProcessor {
 

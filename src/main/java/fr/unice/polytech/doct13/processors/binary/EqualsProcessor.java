@@ -4,9 +4,9 @@ import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
 
 /**
- * Processor for mutating equals than into not equals modification
+ * MyProcessor for mutating equals than into not equals modification
  */
 public class EqualsProcessor extends BinaryProcessor {
 
-    public EqualsProcessor() { super(BinaryOperatorKind.EQ,BinaryOperatorKind.NE); }
+    public EqualsProcessor() { super(BinaryOperatorKind.EQ,BinaryOperatorKind.NE, "EqualsProcessor"); }
 }
