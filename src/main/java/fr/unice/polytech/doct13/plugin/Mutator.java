@@ -41,10 +41,11 @@ import java.util.List;
 public class Mutator extends AbstractMojo {
 
     // class path with name
+    /*
     private final static String FILE_PATH = System.getProperty("user.dir").replace("\\",File.separator) +
             File.separator +
             Mutator.class.getCanonicalName().replace(".",File.separator) + ".java";
-
+    */
 
     /**
      * permet la r�cup�ration d'informations sur le project qui utilise notre plugin
@@ -54,7 +55,7 @@ public class Mutator extends AbstractMojo {
     private MavenProject project;
 
     public void execute() throws MojoExecutionException, MojoFailureException {
-
+        /*
         getLog().info("\n###########CLASSPATH###########\n Mutator.java classpath : \n" +
                 project.getBasedir().toString() +
                 "\n###########CLASSPATH###########\n");
@@ -155,7 +156,7 @@ public class Mutator extends AbstractMojo {
             } catch (MalformedURLException e1) {e1.printStackTrace();}
             catch (ClassNotFoundException e1) {e1.printStackTrace();}
             // End Of TESTS PHASE
-        }
+        }*/
 
         //  buildHelper(); //Change le sourceCodeDirectory.
 
