@@ -42,8 +42,9 @@ public class ReportMojo extends AbstractMojo {
         getLog().info("XML Report");
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = null;
+        File baseDir = project.getBasedir();
 
-        File dirTarget = new File(project.getBasedir() + "/target/html-report");
+        File dirTarget = new File(baseDir + "/target/html-report");
         if (!dirTarget.exists()) {
             dirTarget.mkdir();
         }
@@ -52,9 +53,13 @@ public class ReportMojo extends AbstractMojo {
             List<NodeList> nlList = new ArrayList<NodeList>();
             dBuilder = dbFactory.newDocumentBuilder();
             Document report = dBuilder.newDocument();
-            Element rootElement = report.createElement("tests");
+            Element rootElement = report.createElement("mutation");
+
+            Attr attrMutationName = report.createAttribute("name");
+            rootElement.setAttributeNode(attrMutationName);
             report.appendChild(rootElement);
-            for (File file : new File(project.getBasedir() + "/target/surefire-reports").listFiles()) {
+
+            for (File file : new File(baseDir + "/target/surefire-reports").listFiles()) {
                 String extension = FilenameUtils.getExtension(file.getName());
                 if (extension.equals("xml")) {
                     Document surefireReport = dBuilder.parse(file);
@@ -66,12 +71,11 @@ public class ReportMojo extends AbstractMojo {
             int aliveMutant = 0;
             int deadMutant = 0;
             for (NodeList nl : nlList) {
-                String className = "";
+                String className = "", name = "", time = "";
                 Element classElt = null;
                 for (int i = 0; i < nl.getLength(); i++) {
                     Element testCase = (Element) nl.item(i);
                     if (className.isEmpty()) {
-                        System.out.println("CLASS");
                         className = testCase.getAttribute("classname");
                         classElt = report.createElement("class");
                         rootElement.appendChild(classElt);
@@ -80,23 +84,50 @@ public class ReportMojo extends AbstractMojo {
                         attrClassName.setValue(className);
                         classElt.setAttributeNode(attrClassName);
                     }
-                    System.out.println("METHOD");
                     Element methodElt = report.createElement("method");
                     classElt.appendChild(methodElt);
 
+                    name = testCase.getAttribute("name");
                     Attr attrMethodName = report.createAttribute("name");
-                    Attr attrStatus = report.createAttribute("status");
-                    attrMethodName.setValue(testCase.getAttribute("name"));
+                    attrMethodName.setValue(name);
                     methodElt.setAttributeNode(attrMethodName);
+
+                    time = testCase.getAttribute("time");
+                    Attr attrMethodTime = report.createAttribute("time");
+                    attrMethodTime.setValue(time);
+                    methodElt.setAttributeNode(attrMethodTime);
+
+
+                    Attr attrStatus = report.createAttribute("status");
+                    methodElt.setAttributeNode(attrStatus);
 
                     if (testCase.getChildNodes().getLength() == 0) {
                         aliveMutant++;
                         attrStatus.setValue("alive");
+
+                        String pathToTest = getPathToSrcFile(new File(baseDir + "/src/test"), className + ".java");
+                        String pathToMutant = getPathToSrcFile(new File(baseDir + "/target/generated-sources/spoon"), className.replace("Test", "") + ".java");
+                        String pathToSource = getPathToSrcFile(new File(baseDir + "/src/main"), className.replace("Test", "") + ".java");
+
+                        Attr attrClassPathToSource = report.createAttribute("pathToSource");
+                        attrClassPathToSource.setValue(pathToSource);
+                        classElt.setAttributeNode(attrClassPathToSource);
+
+                        Attr attrClassPathToMutant = report.createAttribute("pathToMutant");
+                        attrClassPathToMutant.setValue(pathToMutant);
+                        classElt.setAttributeNode(attrClassPathToMutant);
+
+                        Attr attrClassPathToTest = report.createAttribute("pathToTest");
+                        attrClassPathToTest.setValue(pathToTest);
+                        classElt.setAttributeNode(attrClassPathToTest);
+
+                        //On récupère less code en vue de montrer ou la mutation est faite
+
+
                     } else {
                         deadMutant++;
                         attrStatus.setValue("dead");
                     }
-                    methodElt.setAttributeNode(attrStatus);
                 }
                 float porcentageDeadMut = ((float) deadMutant / ((float) deadMutant + (float) aliveMutant)) * 100;
                 float porcentageAliveMut = (((float) aliveMutant / ((float) deadMutant + (float) aliveMutant)) * 100);
@@ -121,4 +152,19 @@ public class ReportMojo extends AbstractMojo {
             e.printStackTrace();
         }
     }
+
+    private String getPathToSrcFile(File baseDir, String name) {
+        for (File file : baseDir.listFiles()) {
+            if (file.getName().equals(name))
+                return file.getPath();
+            else if (file.isDirectory()) {
+                String result = getPathToSrcFile(file, name);
+                if (!result.isEmpty())
+                    return result;
+            }
+        }
+        return "";
+    }
+
+
 }
