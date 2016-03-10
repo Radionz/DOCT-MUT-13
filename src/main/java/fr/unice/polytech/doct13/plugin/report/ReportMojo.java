@@ -24,6 +24,9 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,8 +58,6 @@ public class ReportMojo extends AbstractMojo {
             Document report = dBuilder.newDocument();
             Element rootElement = report.createElement("mutation");
 
-            Attr attrMutationName = report.createAttribute("name");
-            rootElement.setAttributeNode(attrMutationName);
             report.appendChild(rootElement);
 
             for (File file : new File(baseDir + "/target/surefire-reports").listFiles()) {
@@ -71,18 +72,40 @@ public class ReportMojo extends AbstractMojo {
             int aliveMutant = 0;
             int deadMutant = 0;
             for (NodeList nl : nlList) {
-                String className = "", name = "", time = "";
+                String className = "", name = "", time = "", pathToTest = "", pathToMutant = "", pathToSource = "";
                 Element classElt = null;
                 for (int i = 0; i < nl.getLength(); i++) {
                     Element testCase = (Element) nl.item(i);
                     if (className.isEmpty()) {
                         className = testCase.getAttribute("classname");
+
                         classElt = report.createElement("class");
                         rootElement.appendChild(classElt);
 
                         Attr attrClassName = report.createAttribute("name");
                         attrClassName.setValue(className);
                         classElt.setAttributeNode(attrClassName);
+
+                        pathToTest = getPathToSrcFile(new File(baseDir + "/src/test"), className + ".java");
+                        Attr attrClassPathToTest = report.createAttribute("pathToTest");
+                        attrClassPathToTest.setValue(pathToTest);
+                        classElt.setAttributeNode(attrClassPathToTest);
+
+                        pathToSource = getPathToSrcFile(new File(baseDir + "/src/main"), className.replace("Test", "") + ".java");
+                        Attr attrClassPathToSource = report.createAttribute("pathToSource");
+                        attrClassPathToSource.setValue(pathToSource);
+                        classElt.setAttributeNode(attrClassPathToSource);
+                        Element codeOriginalElt = report.createElement("codeOriginal");
+                        classElt.appendChild(codeOriginalElt);
+                        codeOriginalElt.setTextContent(readFile(pathToTest, Charset.defaultCharset()));
+
+                        pathToMutant = getPathToSrcFile(new File(baseDir + "/target/generated-sources/spoon"), className.replace("Test", "") + ".java");
+                        Attr attrClassPathToMutant = report.createAttribute("pathToMutant");
+                        attrClassPathToMutant.setValue(pathToMutant);
+                        classElt.setAttributeNode(attrClassPathToMutant);
+                        Element codeMutantElt = report.createElement("codeMutant");
+                        classElt.appendChild(codeMutantElt);
+                        codeMutantElt.setTextContent(readFile(pathToMutant, Charset.defaultCharset()));
                     }
                     Element methodElt = report.createElement("method");
                     classElt.appendChild(methodElt);
@@ -104,24 +127,6 @@ public class ReportMojo extends AbstractMojo {
                     if (testCase.getChildNodes().getLength() == 0) {
                         aliveMutant++;
                         attrStatus.setValue("alive");
-
-                        String pathToTest = getPathToSrcFile(new File(baseDir + "/src/test"), className + ".java");
-                        String pathToMutant = getPathToSrcFile(new File(baseDir + "/target/generated-sources/spoon"), className.replace("Test", "") + ".java");
-                        String pathToSource = getPathToSrcFile(new File(baseDir + "/src/main"), className.replace("Test", "") + ".java");
-
-                        Attr attrClassPathToSource = report.createAttribute("pathToSource");
-                        attrClassPathToSource.setValue(pathToSource);
-                        classElt.setAttributeNode(attrClassPathToSource);
-
-                        Attr attrClassPathToMutant = report.createAttribute("pathToMutant");
-                        attrClassPathToMutant.setValue(pathToMutant);
-                        classElt.setAttributeNode(attrClassPathToMutant);
-
-                        Attr attrClassPathToTest = report.createAttribute("pathToTest");
-                        attrClassPathToTest.setValue(pathToTest);
-                        classElt.setAttributeNode(attrClassPathToTest);
-
-                        //On récupère less code en vue de montrer ou la mutation est faite
 
 
                     } else {
@@ -150,6 +155,8 @@ public class ReportMojo extends AbstractMojo {
             e.printStackTrace();
         } catch (TransformerException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -164,6 +171,12 @@ public class ReportMojo extends AbstractMojo {
             }
         }
         return "";
+    }
+
+    static String readFile(String path, Charset encoding)
+            throws IOException {
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
     }
 
 
