@@ -86,18 +86,13 @@ public class ReportMojo extends AbstractMojo {
                         attrClassName.setValue(className);
                         classElt.setAttributeNode(attrClassName);
 
-                        pathToTest = getPathToSrcFile(new File(baseDir + "/src/test"), className + ".java");
-                        Attr attrClassPathToTest = report.createAttribute("pathToTest");
-                        attrClassPathToTest.setValue(pathToTest);
-                        classElt.setAttributeNode(attrClassPathToTest);
-
                         pathToSource = getPathToSrcFile(new File(baseDir + "/src/main"), className.replace("Test", "") + ".java");
                         Attr attrClassPathToSource = report.createAttribute("pathToSource");
                         attrClassPathToSource.setValue(pathToSource);
                         classElt.setAttributeNode(attrClassPathToSource);
                         Element codeOriginalElt = report.createElement("codeOriginal");
                         classElt.appendChild(codeOriginalElt);
-                        codeOriginalElt.setTextContent(readFile(pathToTest, Charset.defaultCharset()));
+                        codeOriginalElt.setTextContent(readFile(pathToSource, Charset.defaultCharset()));
 
                         pathToMutant = getPathToSrcFile(new File(baseDir + "/target/generated-sources/spoon"), className.replace("Test", "") + ".java");
                         Attr attrClassPathToMutant = report.createAttribute("pathToMutant");
@@ -106,6 +101,14 @@ public class ReportMojo extends AbstractMojo {
                         Element codeMutantElt = report.createElement("codeMutant");
                         classElt.appendChild(codeMutantElt);
                         codeMutantElt.setTextContent(readFile(pathToMutant, Charset.defaultCharset()));
+
+                        pathToTest = getPathToSrcFile(new File(baseDir + "/src/test"), className + ".java");
+                        Attr attrClassPathToTest = report.createAttribute("pathToTest");
+                        attrClassPathToTest.setValue(pathToTest);
+                        classElt.setAttributeNode(attrClassPathToTest);
+                        Element codeTestElt = report.createElement("codeTest");
+                        classElt.appendChild(codeTestElt);
+                        codeTestElt.setTextContent(readFile(pathToTest, Charset.defaultCharset()));
                     }
                     Element methodElt = report.createElement("method");
                     classElt.appendChild(methodElt);

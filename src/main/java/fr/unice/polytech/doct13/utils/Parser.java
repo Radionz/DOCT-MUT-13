@@ -1,7 +1,6 @@
 package fr.unice.polytech.doct13.utils;
 
 import com.google.gson.Gson;
-import fr.unice.polytech.doct13.processors.MyProcessor;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
