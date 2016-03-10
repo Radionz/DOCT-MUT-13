@@ -1,10 +1,10 @@
-# How to build
+# Construction de notre framework au sein de votre projet
 ---
 ## Vous disposez des sources ?
-### Etape 0 : Placer les projets #
+### Etape 0 : Placer les projets 
 Aucune condition à priori, placez simplement votre projet ainsi que le notre en local sur votre ordinateur.  
 nb : les deux projets doivent être des projets maven.
-### Etape 1 : Construisez notre framework #
+### Etape 1 : Construisez notre framework 
 Pour cela, lancer le cycle d'installation de maven en vous plaçant à la racine de notre projet.
 ```sh
 $ mvn install
@@ -77,7 +77,7 @@ ajoutez les plugins suivant
     </executions>
 </plugin>
 ```
-#### Etape 2.2 : Execution du framework
+### Etape 3.1 : Préparation à l'exécution du framework
 Ajouter un fichier .sh (run.sh par exemple) à la racine de votre projet.
 Avec pour contenu
 ```sh
@@ -111,36 +111,3 @@ sed -i -e "s/$/\\\/g" -e "s/<\/mutations>'\\\/<\/mutations>/" $report_final
 ```
 nb : Vous devez remplacer "my\path\to\a\browser" par le chemin d'accès menant à un exécutable permettant d'ouvrir un navigateur web.  
 Les résultats des mutations seront ainsi automatiquement affichés sur la page web affichée.
-### Etape 3 : Exécution de notre framework au sein de votre projet
-#### Etape 3.1 : Configuration des mutations 
-Pour pouvoir lancer les mutations il faut les spécifier dans un fichier .json (mutations.json par exemple) avec un format particulier comme suit.
-```json
-{
-	"mutations":{
-		"mut1":{
-			"name":"Processor1",
-			"packageName" : "ThePackageContainingYourClass",
-			"className": "OneOfYourClassName",
-			"methodName": "OneOfYourMethodName",
-			"mutation_probability": 0..1
-		},
-		"mut2":{
-			"name":"Processor2",
-			"packageName" : "ThePackageContainingYourClass",
-			"className": "OneOfYourClassName",
-			"methodName": "OneOfYourMethodName",
-			"mutation_probability": 0..1
-		}...
-	}
-}
-```
-nb : "mut1" et "mut2" sont des clés, leur nom n'a aucun impact sur le parsing du json.  
-L'attribut "name" est le nom du processeur à utiliser (liste exhaustive : DivProcessor, EqualsProcessor, GEProcessor, GTProcessor, LEProcessor, LEProcessor, LTProcessor, MinusProcessor, MultProcessor, NegProcessor, NotEqualsProcessor, PlusProcessor, PosProcessor, PostDecProcessor, PostIncProcessor, PreDecProcessor, PreIncProcessor) sur la classe donnée (className), contenue dans le package (packageName), ainsi que la méthode donnée (methodName).  
-L'attribut "mutation_probability" indique le pourcentage de chance que la mutation se produise, il varie de 0 à 100% (0 à 1).
-### Etape 3.2 : On va enfin pourvoir lancer tout ça !
-Tout ce qu'il vous reste à faire désormais est de lancer l'exécutable .sh avec le fichier .json en paramètre.  
-Ainsi si l'on est à la racine du projet (au même niveau que le pom.xml de votre projet) avec les fichiers run.sh et mutations.json, il suffit d'exécuter la commande suivante.
-```sh
-run.sh mutations.json
-```
-Si vous avez correctement indiqué le chemin d'accès de votre navigateur web préféré à la fin du fichier .sh (run.sh ici), une page web comportant des informations sur la mutation de votre code devrait s'ouvrir à la fin de l'application de toutes les mutations.
