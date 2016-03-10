@@ -1,7 +1,9 @@
 # Rapport
 ---
 ## Architecture
-Quatres murs, un plafond et un sol. (des fenêtres avec de la chance)
+
+<p align="center"> <img src="http://i.imgur.com/ms0IKph.png"></img></p>
+
 ## Réalisation du framework
 ### Spoon
 Nous utilisons spoon afin d'appliquer faciliment les mutations au code.
