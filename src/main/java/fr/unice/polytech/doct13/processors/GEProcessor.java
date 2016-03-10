@@ -1,4 +1,4 @@
-package fr.unice.polytech.doct13.processors.binary;
+package fr.unice.polytech.doct13.processors;
 
 import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
@@ -9,6 +9,6 @@ import spoon.reflect.code.BinaryOperatorKind;
 public class GEProcessor extends BinaryProcessor {
 
     public GEProcessor(){
-        super(BinaryOperatorKind.GE,BinaryOperatorKind.LT, "GEProcessor");
+        super(BinaryOperatorKind.GE,BinaryOperatorKind.LT);
     }
 }

@@ -1,4 +1,4 @@
-package fr.unice.polytech.doct13.processors.unary;
+package fr.unice.polytech.doct13.processors;
 
 import fr.unice.polytech.doct13.processors.UnaryProcessor;
 import spoon.reflect.code.UnaryOperatorKind;

@@ -1,4 +1,4 @@
-package fr.unice.polytech.doct13.processors.binary;
+package fr.unice.polytech.doct13.processors;
 
 import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
@@ -8,5 +8,5 @@ import spoon.reflect.code.BinaryOperatorKind;
  */
 public class EqualsProcessor extends BinaryProcessor {
 
-    public EqualsProcessor() { super(BinaryOperatorKind.EQ,BinaryOperatorKind.NE, "EqualsProcessor"); }
+    public EqualsProcessor() { super(BinaryOperatorKind.EQ,BinaryOperatorKind.NE); }
 }

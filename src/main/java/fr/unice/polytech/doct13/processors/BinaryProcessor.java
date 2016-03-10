@@ -25,8 +25,9 @@ public class BinaryProcessor extends AbstractProcessor<CtBinaryOperator>{
     private static double mutation_probability = 0.30;
     private static Random random = new Random();
 
-    public BinaryProcessor( BinaryOperatorKind t, BinaryOperatorKind m, String name){
+    public BinaryProcessor( BinaryOperatorKind t, BinaryOperatorKind m){
         super();
+        this.name = getClass().getSimpleName();
         this.target = t;
         this.mutation = m;
         this.name = name;
@@ -40,35 +41,33 @@ public class BinaryProcessor extends AbstractProcessor<CtBinaryOperator>{
 
     public void process(CtBinaryOperator op) {
 
-        //System.out.println("Helloooooo Je suis "+name+" je veux " + className+" "+methodName + " "+mutation_probability);
+        // mutation on the target only
         if (!op.getKind().equals(target))
             return;
 
         CtMethod parentMethod = op.getParent(CtMethod.class);
         CtClass parentClass = op.getParent(CtClass.class);
 
-        //System.out.println("Classe " + parentClass.getSimpleName()+" vs "+ className +" = "+!parentClass.getSimpleName().equals(className));
+        // mutation in the class selected
         if (parentClass==null || !parentClass.getSimpleName().equals(className))
             return;
-        //System.out.println("Bonne Classe");
+        // mutation in the method selected
         if (parentMethod==null || !parentMethod.getSimpleName().equals(methodName))
             return;
 
-        //System.out.println("Bonne Methode");
-
+        // random mutation
         if( random.nextFloat() < mutation_probability ) {
-            //System.out.println("Mutation ! lolilol");
             op.setKind(mutation);
         }
     }
 
     private void parseConfig(){
         Gson gson = new Gson();
-        Parser parser=new Parser(1);
+        Parser parser=new Parser();
         try{
             parser = gson.fromJson(Parser.readFile("mutations.json"), Parser.class);
             ProcessorParser theMutation = parser.getMyProcessor(name);
-            className = theMutation.className;
+            className = theMutation.getClassName();
             methodName = theMutation.getMethodName();
             mutation_probability = theMutation.getMutation_probability();
         }catch (Exception e){

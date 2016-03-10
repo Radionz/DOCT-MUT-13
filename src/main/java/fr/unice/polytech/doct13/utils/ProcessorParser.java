@@ -6,11 +6,11 @@ package fr.unice.polytech.doct13.utils;
 
 public class ProcessorParser{
 
-    public String name;
-    public String packageName;
-    public String className;
-    public String methodName;
-    public double mutation_probability;
+    private String name;
+    private String packageName;
+    private String className;
+    private String methodName;
+    private double mutation_probability;
 
     public ProcessorParser(String name, String packageName, String className, String methodName, double mutation_probability) {
         this.name = name;

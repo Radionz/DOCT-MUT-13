@@ -1,4 +1,4 @@
-package fr.unice.polytech.doct13.processors.binary;
+package fr.unice.polytech.doct13.processors;
 
 import fr.unice.polytech.doct13.processors.BinaryProcessor;
 import spoon.reflect.code.BinaryOperatorKind;
@@ -9,6 +9,6 @@ import spoon.reflect.code.BinaryOperatorKind;
 public class NotEqualsProcessor extends BinaryProcessor {
 
     public NotEqualsProcessor(){
-        super(BinaryOperatorKind.NE,BinaryOperatorKind.EQ, "NotEqualsProcessor");
+        super(BinaryOperatorKind.NE,BinaryOperatorKind.EQ);
     }
 }

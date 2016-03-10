@@ -15,7 +15,7 @@ public class Parser {
 
     public Map<String, ProcessorParser> mutations;
 
-    public Parser(int i) {
+    public Parser() {
         HashMap<String, ProcessorParser> monproc = new HashMap<String, ProcessorParser>();
         ProcessorParser mon = new ProcessorParser("EqualsProcessor", "packageName", "className", "methodName", 0.4);
         ProcessorParser mon2 = new ProcessorParser("EqualsProcessor", "packageName", "className", "methodName", 0.4);
@@ -32,7 +32,6 @@ public class Parser {
             if( mutations.get(mut).getName().equals(mutationName)){
                 return mutations.get(mut);
             }
-
         }
         return null;
     }
